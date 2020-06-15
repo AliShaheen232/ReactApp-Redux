@@ -5,10 +5,22 @@ import "./Firebase";
 import * as firebase from "firebase";
 
 class Login extends Component {
-  state = {
-    email: "",
-    password: "",
-  };
+  constructor(props) {
+    super(props);
+
+    // redirect to home if already logged in
+    console.log('in login')
+    firebase.auth().onAuthStateChanged(userAuth => {
+      // if (userAuth) {
+      //   this.props.history.push('/');
+      // }
+    });
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+
 
   login = (e) => {
     e.preventDefault();
@@ -17,6 +29,8 @@ class Login extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
         console.log(u);
+        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        this.props.history.push(from);
       })
       .catch((err) => {
         console.log(err.toString());
