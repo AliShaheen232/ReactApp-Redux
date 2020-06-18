@@ -1,30 +1,27 @@
 import React, { Component } from "react";
 import "./Firebase";
 import * as firebase from "firebase";
+// import { history } from "../_helper/history";
 
-class Signup extends Component {
+class Forgotpassword extends Component {
   constructor(props) {
     super(props);
 
     // redirect to home if already logged in
-    console.log("signup");
-    firebase.auth().onAuthStateChanged((userAuth) => {});
+    console.log("reset");
+    // firebase.auth().onAuthStateChanged((userAuth) => {});
     this.state = {
       email: "",
-      password: "",
     };
   }
-  signup = (e) => {
+
+  resetPassword = (e) => {
     e.preventDefault();
     firebase
       .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .sendPasswordResetEmail(this.state.email)
       .then((u) => {
         console.log(u);
-        const { from } = this.props.location.state || {
-          from: { pathname: "/login" },
-        };
-        this.props.history.push(from);
       })
       .catch((err) => {
         console.log(err.toString());
@@ -39,8 +36,7 @@ class Signup extends Component {
   render() {
     return (
       <form onSubmit={this.submit}>
-        <h1>Signup Form</h1>
-
+        <h1>Reset Password</h1>
         <input
           name="email"
           type="email"
@@ -48,19 +44,12 @@ class Signup extends Component {
           onChange={this.handleChange}
           value={this.state.email}
         />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-          value={this.state.password}
-        />
-        <button type="submit" onClick={this.signup}>
-          Join Now
+        <button type="submit" onClick={this.resetPassword}>
+          Send Email
         </button>
       </form>
     );
   }
 }
 
-export default Signup;
+export default Forgotpassword;
