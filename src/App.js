@@ -33,23 +33,9 @@ class App extends Component {
     history.push("/login");
   };
   render() {
-    // const { currentUser } = this.state;
     return (
       <Router history={history}>
         <div>
-          {/* {currentUser && (
-            <nav className="navbar navbar-expand navbar-dark bg-dark">
-              <div className="navbar-nav">
-                <Link to="/" className="nav-item nav-link">
-                  Home
-                </Link>
-                <Link className="nav-item nav-link"> currentUser</Link>
-                <Link onClick={this.logout} className="nav-item nav-link">
-                  Logout
-                </Link>
-              </div>
-            </nav>
-          )} */}
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <div className="navbar-nav">
               <Link to="/" className="nav-item nav-link">

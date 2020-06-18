@@ -9,7 +9,6 @@ class Forgotpassword extends Component {
 
     // redirect to home if already logged in
     console.log("reset");
-    // firebase.auth().onAuthStateChanged((userAuth) => {});
     this.state = {
       email: "",
     };
